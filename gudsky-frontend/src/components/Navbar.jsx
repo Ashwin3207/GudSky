@@ -1,5 +1,5 @@
-// Navbar.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
@@ -21,11 +21,11 @@ export default function Navbar() {
           </div>
         </div>
         <nav className="hidden md:flex space-x-6 font-medium text-sm">
-          <a href="#" className="hover:text-blue-200 transition">Home</a>
-          <a href="#" className="hover:text-blue-200 transition">Research</a>
-          <a href="#" className="hover:text-blue-200 transition">Courses</a>
-          <a href="#" className="hover:text-blue-200 transition">About</a>
-          <a href="#" className="hover:text-blue-200 transition">Contact</a>
+          <Link to="/" className="hover:text-blue-200 transition">Home</Link>
+          <Link to="/research" className="hover:text-blue-200 transition">Research</Link>
+          <Link to="/courses" className="hover:text-blue-200 transition">Courses</Link>
+          <Link to="/about" className="hover:text-blue-200 transition">About</Link>
+          <Link to="/contact" className="hover:text-blue-200 transition">Contact</Link>
         </nav>
       </div>
     </header>
