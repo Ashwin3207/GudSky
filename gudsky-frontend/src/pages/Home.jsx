@@ -59,9 +59,11 @@ export default function Home() {
         >
           {carouselImages.map((img, idx) => (
             <div key={idx}>
+              
               <img
                 src={img.url}
                 alt={`slide-${idx}`}
+                loading="lazy"   //added lazy loading
                 className="h-[280px] sm:h-[320px] md:h-[360px] w-full object-cover"
               />
             </div>
