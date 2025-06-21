@@ -24,10 +24,22 @@ export default function Home() {
     <div className="pt-6 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-screen">
       {/* Carousel */}
       <section className="my-8 max-w-6xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-blue-100">
-        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false} showArrows>
+        <Carousel
+          autoPlay
+          infiniteLoop
+          showThumbs={false}
+          showStatus={false}
+          showArrows
+          interval={4000}
+          transitionTime={700}
+        >
           {carouselImages.map((img, idx) => (
             <div key={idx}>
-              <img src={img.url} alt={`slide-${idx}`} className="h-[300px] w-full object-cover" />
+              <img
+                src={img.url}
+                alt={`slide-${idx}`}
+                className="h-[280px] sm:h-[320px] md:h-[360px] w-full object-cover"
+              />
             </div>
           ))}
         </Carousel>
@@ -42,8 +54,13 @@ export default function Home() {
             { value: "10+", label: "Collaborating Institutions" },
             { value: "15", label: "Ongoing Courses" },
           ].map((item, idx) => (
-            <div key={idx} className="p-6 rounded-xl shadow-md bg-white hover:bg-blue-100 transition-all duration-300">
-              <h3 className="text-5xl font-extrabold text-blue-700 mb-2">{item.value}</h3>
+            <div
+              key={idx}
+              className="p-6 rounded-xl shadow-md bg-white hover:bg-blue-100 transition-all duration-300"
+            >
+              <h3 className="text-5xl font-extrabold text-blue-700 mb-2">
+                {item.value}
+              </h3>
               <p className="text-gray-600 text-lg">{item.label}</p>
             </div>
           ))}
