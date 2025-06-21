@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
-
+import ComingSoon from "./pages/ComingSoon"
 // Layout Components (optional)
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
