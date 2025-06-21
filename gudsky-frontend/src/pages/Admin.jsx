@@ -12,33 +12,39 @@ export default function Admin() {
   }, []);
 
   const fetchImages = async () => {
+    console.log("Fetching images...");
     try {
       const res = await axios.get(`${API}/api/carousel`);
+      console.log("Fetched images:", res.data);
       setImages(res.data);
     } catch (error) {
-      console.error("Error fetching images:", error);
+      console.error("Failed to fetch images:", error);
     }
   };
 
   const handleAddImage = async () => {
-    if (newImage.trim()) {
-      try {
-        const res = await axios.post(`${API}/api/carousel`, {
-          url: newImage,
-        });
-        setImages([...images, res.data]);
-        setNewImage("");
-      } catch (error) {
-        console.error("Error adding image:", error);
-      }
+    if (!newImage.trim()) {
+      console.warn("No image URL provided.");
+      return;
+    }
+
+    console.log("Attempting to add image:", newImage);
+
+    try {
+      const res = await axios.post(`${API}/api/carousel`, { url: newImage });
+      console.log("Image added successfully:", res.data);
+      setNewImage("");
+      fetchImages();
+    } catch (error) {
+      console.error("Error adding image:", error);
     }
   };
 
   const handleUpdateImage = async (id, url) => {
+    console.log(`Updating image ${id} to new URL: ${url}`);
     try {
-      const res = await axios.put(`${API}/api/carousel/${id}`, {
-        url,
-      });
+      const res = await axios.put(`${API}/api/carousel/${id}`, { url });
+      console.log("Image updated:", res.data);
       setImages(images.map((img) => (img._id === id ? res.data : img)));
     } catch (error) {
       console.error("Error updating image:", error);
@@ -50,8 +56,12 @@ export default function Admin() {
       alert("At least one image must remain in the carousel.");
       return;
     }
+
+    console.log("Deleting image with ID:", id);
+
     try {
       await axios.delete(`${API}/api/carousel/${id}`);
+      console.log("Image deleted.");
       setImages(images.filter((img) => img._id !== id));
     } catch (error) {
       console.error("Error deleting image:", error);
