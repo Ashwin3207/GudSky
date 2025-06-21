@@ -1,7 +1,7 @@
 
 # Gudksy Research Foundation 🌟
 
-[![Website Status](https://img.shields.io/badge/status-beta-blue)](#)
+[![Website Status](https://img.shields.io/badge/status-alpha-red)](#)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ---
@@ -29,13 +29,12 @@
 
 ---
 
-## 📦 Tech Stack
+## 📦 Tech Stack (MEEN Stack)
 
-- Framework: Next.js or Gatsby
-- Styling: Styled Components or Tailwind CSS
-- CMS: Contentful / Strapi / Markdown content
-- Hosting: Vercel / Netlify / AWS S3 + CloudFront
-- Forms: Formspree / Netlify Forms
+- **MongoDB** – NoSQL database for storing dynamic content, publications, user data
+- **Express.js** – Server-side web framework for Node.js
+- **EJS** – Embedded JavaScript templating engine for rendering frontend views
+- **Node.js** – JavaScript runtime for the backend server
 
 ---
 
@@ -49,20 +48,16 @@
 2. Install dependencies:
    ```sh
    npm install
-   # or
-   yarn install
    ```
-3. Create `.env.local` with required variables:
+3. Create `.env` with required variables:
+   ```env
+   PORT=3000
+   MONGODB_URI=mongodb+srv://your-db-url
+   SESSION_SECRET=your-secret
    ```
-   NEXT_PUBLIC_SITE_NAME="Gudksy Research Foundation"
-   NEXT_PUBLIC_API_URL="https://cms.yoursite.com"
-   CONTACT_FORM_ENDPOINT="https://formspree.io/f/your-form-id"
-   ```
-4. Run dev server:
+4. Run the server:
    ```sh
-   npm run dev
-   # or
-   yarn dev
+   npm start
    ```
 5. Open http://localhost:3000
 
@@ -70,54 +65,12 @@
 
 ## ⚙️ Deployment
 
-- **Vercel / Netlify**: Connect GitHub repo ➝ auto-deploy on push.
-- **AWS S3 / CloudFront**:
-  - Build: `npm run build`
-  - Upload `out/` or `.next/` directory
-  - Invalidate CloudFront cache 
-- **Custom server**:
+- **Render / Railway**: Connect GitHub ➝ set environment variables ➝ deploy
+- **Custom VPS**:
   ```sh
   npm run build
-  npm run start
+  pm2 start app.js
   ```
-
----
-
-## 🔍 Content Management
-
-- Edit page content under `/content` or via CMS dashboard.
-- Add new blog posts or events:
-  - **Markdown**: Place `*.md` files in `/content/events` or `/content/posts`
-  - **CMS**: Create new entries and connect to site components
-
----
-
-## 🧪 Testing & Linting
-
-- Run unit and integration tests:
-  ```sh
-  npm test
-  ```
-- Lint code:
-  ```sh
-  npm run lint
-  ```
-- Format:
-  ```sh
-  npm run format
-  ```
-
----
-
-## 👏 Contributing
-
-We welcome your help! Please:
-
-1. Fork this repo
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m "feat: your feature"`)
-4. Push (`git push origin feature/your-feature`)
-5. Open a Pull Request
 
 ---
 
