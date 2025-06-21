@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_API_BASE_URL;
+
 export default function Admin() {
   const [images, setImages] = useState([]);
   const [newImage, setNewImage] = useState("");
@@ -10,25 +12,37 @@ export default function Admin() {
   }, []);
 
   const fetchImages = async () => {
-    const res = await axios.get("http://localhost:5000/api/carousel");
-    setImages(res.data);
+    try {
+      const res = await axios.get(`${API}/api/carousel`);
+      setImages(res.data);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
   };
 
   const handleAddImage = async () => {
     if (newImage.trim()) {
-      const res = await axios.post("http://localhost:5000/api/carousel", {
-        url: newImage,
-      });
-      setImages([...images, res.data]);
-      setNewImage("");
+      try {
+        const res = await axios.post(`${API}/api/carousel`, {
+          url: newImage,
+        });
+        setImages([...images, res.data]);
+        setNewImage("");
+      } catch (error) {
+        console.error("Error adding image:", error);
+      }
     }
   };
 
   const handleUpdateImage = async (id, url) => {
-    const res = await axios.put(`http://localhost:5000/api/carousel/${id}`, {
-      url,
-    });
-    setImages(images.map((img) => (img._id === id ? res.data : img)));
+    try {
+      const res = await axios.put(`${API}/api/carousel/${id}`, {
+        url,
+      });
+      setImages(images.map((img) => (img._id === id ? res.data : img)));
+    } catch (error) {
+      console.error("Error updating image:", error);
+    }
   };
 
   const handleDeleteImage = async (id) => {
@@ -36,8 +50,12 @@ export default function Admin() {
       alert("At least one image must remain in the carousel.");
       return;
     }
-    await axios.delete(`http://localhost:5000/api/carousel/${id}`);
-    setImages(images.filter((img) => img._id !== id));
+    try {
+      await axios.delete(`${API}/api/carousel/${id}`);
+      setImages(images.filter((img) => img._id !== id));
+    } catch (error) {
+      console.error("Error deleting image:", error);
+    }
   };
 
   return (
